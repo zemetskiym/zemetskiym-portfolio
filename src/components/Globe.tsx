@@ -61,7 +61,19 @@ export default function Globe (): JSX.Element {
                 .attr("d", path)
                 .style("fill", "none")
                 .style("stroke", "#444444")
-                .style("stroke-width", 0.4)
+                .style("stroke-width", 0.4) 
+
+            // Update the rotation of the globe on user drag
+            svg.call(d3.drag().on('drag', (event) => {
+                const rotate = projection.rotate()
+                const k = sensitivity / projection.scale()
+                projection.rotate([
+                    rotate[0] + event.dx * k,
+                    rotate[1] - event.dy * k
+                ])
+                path = d3.geoPath().projection(projection)
+                svg.selectAll("path").attr("d", path)
+            }))
 
             // Update the rotation of the globe and paths every 200 milliseconds.
             d3.timer(function() {
