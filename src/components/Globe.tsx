@@ -1,6 +1,7 @@
 // Import necessary functions and modules
 import { useRef, useEffect } from "react";
 import * as d3 from "d3";
+import { D3DragEvent } from 'd3';
 
 // Visualize GeoJSON on a globe using D3.js
 export default function Globe (): JSX.Element {
@@ -50,7 +51,7 @@ export default function Globe (): JSX.Element {
                 .attr("d", path)
                 .style("fill", "#1E1E1E")
                 .style("stroke", "2E2E2E")
-                .style("stroke-width", 0.3)
+                .style("stroke-width", 0.3);
             
             // Generate the latitude and longitude lines using d3.geoGraticule().
             const graticuleGenerator = d3.geoGraticule();
@@ -61,19 +62,20 @@ export default function Globe (): JSX.Element {
                 .attr("d", path)
                 .style("fill", "none")
                 .style("stroke", "#444444")
-                .style("stroke-width", 0.4) 
+                .style("stroke-width", 0.4);
 
             // Update the rotation of the globe on user drag
-            svg.call(d3.drag().on('drag', (event) => {
-                const rotate = projection.rotate()
-                const k = sensitivity / projection.scale()
+            // @ts-ignore
+            svg.call(d3.drag().on('drag', (event: D3DragEvent<SVGSVGElement, any, any>) => {
+                const rotate = projection.rotate();
+                const k = sensitivity / projection.scale();
                 projection.rotate([
                     rotate[0] + event.dx * k,
                     rotate[1] - event.dy * k
-                ])
-                path = d3.geoPath().projection(projection)
-                svg.selectAll("path").attr("d", path)
-            }))
+                ]);
+                path = d3.geoPath().projection(projection);
+                svg.selectAll("path").attr("d", path);
+            }));
 
             // Update the rotation of the globe and paths every 200 milliseconds.
             d3.timer(function() {
@@ -85,7 +87,7 @@ export default function Globe (): JSX.Element {
                 ])
                 path = d3.geoPath().projection(projection)
                 svg.selectAll("path").attr("d", path)    
-            }, 200)
+            }, 200);
           });
     }, []);
 
