@@ -7,4 +7,9 @@
     vertical-align: baseline;
     background: transparent;
     box-sizing: border-box;
+    font-family: serif;
+}
+
+a {
+    color: #003366;
 }
