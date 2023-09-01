@@ -12,17 +12,9 @@ export default function Globe (): JSX.Element {
         // Select the SVG element.
         const svg = d3.select(svgRef.current);
 
-        const fetchCountries = fetch("/data/globe/countryData.json").then(response => response.json());
-        const fetchCities = fetch("/data/globe/cityData.json").then(response => response.json());
-
-        Promise.all([fetchCountries, fetchCities])
-          .then((data) => {
-            let countryData = data[0];
-            const cityData = data[1];
-
-            // Combine countryData and cityData for easier rotation.
-            countryData.features = countryData.features.concat(cityData.features);
-
+        fetch("/data/globe/countryData.json")
+          .then(response => response.json())
+          .then((countryData: any) => {
             // Set the height, width, and sensitivity of the SVG globe. 
             const height = 220;
             const width = 220;
@@ -33,7 +25,7 @@ export default function Globe (): JSX.Element {
                 .scale(width / 2 - 1)
                 .translate([width / 2, height / 2]);
             
-            let path: any = d3.geoPath().projection(projection).pointRadius(0.5);
+            let path: any = d3.geoPath().projection(projection);
 
             // Append a circle representing the globe to the SVG.
             svg.append("circle")
@@ -52,9 +44,8 @@ export default function Globe (): JSX.Element {
                 .data(countryData.features)
                 .enter().append("path")
                 .attr("d", path)
-                .attr("z-index", (d: any) => d.geometry.type == "Point" ? 3 : 1)
-                .style("fill", (d: any) => d.geometry.type == "Point" ? "#FFFFFF" : "#1E1E1E")
-                .style("stroke", (d: any) => d.geometry.type == "Point" ? "None" : "2E2E2E")
+                .style("fill", "#1E1E1E")
+                .style("stroke", "2E2E2E")
                 .style("stroke-width", 0.3);
             
             // Generate the latitude and longitude lines using d3.geoGraticule().
@@ -77,21 +68,21 @@ export default function Globe (): JSX.Element {
                     rotate[0] + event.dx * k,
                     rotate[1] - event.dy * k
                 ]);
-                path = d3.geoPath().projection(projection).pointRadius(0.5);
+                path = d3.geoPath().projection(projection);
                 svg.selectAll("path").attr("d", path);
             }));
 
-            // Update the rotation of the globe and paths every 400 milliseconds.
+            // Update the rotation of the globe and paths every 300 milliseconds.
             d3.timer(function() {
                 const rotate = projection.rotate()
                 const k = sensitivity / projection.scale()
                 projection.rotate([
-                    rotate[0] - 0.5 * k,
+                    rotate[0] - 0.7 * k,
                     rotate[1]
                 ])
-                path = d3.geoPath().projection(projection).pointRadius(0.5);
+                path = d3.geoPath().projection(projection);
                 svg.selectAll("path").attr("d", path)    
-            }, 400);
+            }, 300);
           });
     }, []);
 
