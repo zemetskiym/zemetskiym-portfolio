@@ -77,7 +77,7 @@ export default function Globe (): JSX.Element {
                     rotate[0] + event.dx * k,
                     rotate[1] - event.dy * k
                 ]);
-                path = d3.geoPath().projection(projection);
+                path = d3.geoPath().projection(projection).pointRadius(0.5);
                 svg.selectAll("path").attr("d", path);
             }));
 
