@@ -17,8 +17,11 @@ export default function Globe (): JSX.Element {
 
         Promise.all([fetchCountries, fetchCities])
           .then((data) => {
-            const countryData = data[0];
+            let countryData = data[0];
             const cityData = data[1];
+
+            // Combine countryData and cityData for easier rotation.
+            countryData.features = countryData.features.concat(cityData.features);
 
             // Set the height, width, and sensitivity of the SVG globe. 
             const height = 220;
@@ -30,7 +33,7 @@ export default function Globe (): JSX.Element {
                 .scale(width / 2 - 1)
                 .translate([width / 2, height / 2]);
             
-            let path: any = d3.geoPath().projection(projection);
+            let path: any = d3.geoPath().projection(projection).pointRadius(0.5);
 
             // Append a circle representing the globe to the SVG.
             svg.append("circle")
@@ -43,14 +46,15 @@ export default function Globe (): JSX.Element {
 
             let map = svg.append("g")
             
-            // Append the country paths to the map.
+            // Append the country paths and city points to the map.
             map.append("g")
                 .selectAll("path")
                 .data(countryData.features)
                 .enter().append("path")
                 .attr("d", path)
-                .style("fill", "#1E1E1E")
-                .style("stroke", "2E2E2E")
+                .attr("z-index", (d: any) => d.geometry.type == "Point" ? 3 : 1)
+                .style("fill", (d: any) => d.geometry.type == "Point" ? "#FFFFFF" : "#1E1E1E")
+                .style("stroke", (d: any) => d.geometry.type == "Point" ? "None" : "2E2E2E")
                 .style("stroke-width", 0.3);
             
             // Generate the latitude and longitude lines using d3.geoGraticule().
@@ -64,7 +68,7 @@ export default function Globe (): JSX.Element {
                 .style("stroke", "#444444")
                 .style("stroke-width", 0.4);
 
-            // Update the rotation of the globe on user drag
+            // Update the rotation of the globe on user drag.
             // @ts-ignore
             svg.call(d3.drag().on('drag', (event: D3DragEvent<SVGSVGElement, any, any>) => {
                 const rotate = projection.rotate();
@@ -85,7 +89,7 @@ export default function Globe (): JSX.Element {
                     rotate[0] - 1 * k,
                     rotate[1]
                 ])
-                path = d3.geoPath().projection(projection)
+                path = d3.geoPath().projection(projection).pointRadius(0.5);
                 svg.selectAll("path").attr("d", path)    
             }, 200);
           });
