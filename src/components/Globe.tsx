@@ -81,17 +81,17 @@ export default function Globe (): JSX.Element {
                 svg.selectAll("path").attr("d", path);
             }));
 
-            // Update the rotation of the globe and paths every 200 milliseconds.
+            // Update the rotation of the globe and paths every 400 milliseconds.
             d3.timer(function() {
                 const rotate = projection.rotate()
                 const k = sensitivity / projection.scale()
                 projection.rotate([
-                    rotate[0] - 1 * k,
+                    rotate[0] - 0.5 * k,
                     rotate[1]
                 ])
                 path = d3.geoPath().projection(projection).pointRadius(0.5);
                 svg.selectAll("path").attr("d", path)    
-            }, 200);
+            }, 400);
           });
     }, []);
 
