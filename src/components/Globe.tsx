@@ -29,8 +29,8 @@ export default function Globe (): JSX.Element {
 
             // Append a circle representing the globe to the SVG.
             svg.append("circle")
-                .attr("fill", "#121212")
-                .attr("stroke", "#2E2E2E")
+                .attr("fill", "#b9b784")
+                .attr("stroke", "#b9a36b")
                 .attr("stroke-width", 0.2)
                 .attr("cx", width / 2)
                 .attr("cy", height / 2)
@@ -44,8 +44,8 @@ export default function Globe (): JSX.Element {
                 .data(countryData.features)
                 .enter().append("path")
                 .attr("d", path)
-                .style("fill", "#1E1E1E")
-                .style("stroke", "2E2E2E")
+                .style("fill", "#f8c462")
+                .style("stroke", "#f5a84f")
                 .style("stroke-width", 0.3);
             
             // Generate the latitude and longitude lines using d3.geoGraticule().
@@ -56,7 +56,7 @@ export default function Globe (): JSX.Element {
                 .datum(graticuleGenerator)
                 .attr("d", path)
                 .style("fill", "none")
-                .style("stroke", "#444444")
+                .style("stroke", "#b9a36b")
                 .style("stroke-width", 0.4);
 
             // Update the rotation of the globe on user drag.
