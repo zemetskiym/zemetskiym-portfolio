@@ -12,7 +12,7 @@ export default function Globe (): JSX.Element {
         // Select the SVG element.
         const svg = d3.select(svgRef.current);
 
-        fetch("/data/globe/countryData.json")
+        fetch("/json/globe.json")
           .then(response => response.json())
           .then((countryData: any) => {
             // Set the height, width, and sensitivity of the SVG globe. 
