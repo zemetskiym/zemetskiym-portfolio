@@ -21,7 +21,9 @@
 }
 
 #globeContainer {
-    width: 1000px;
+    cursor: pointer;
+    width: 220px;
+    margin-left: 780px;
     position: absolute;
     display: flex;
     align-items: center;
