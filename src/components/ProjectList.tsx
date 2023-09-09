@@ -1,4 +1,4 @@
-import styles from "../styles/components/Projects.module.css";
+import styles from "../styles/components/ProjectList.module.css";
 import projects from "../../public/json/projects.json";
 import Image from "next/image";
 import Link from "next/link";
