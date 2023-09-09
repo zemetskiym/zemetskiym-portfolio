@@ -20,17 +20,14 @@ GIHA is a web-based tool for analyzing GitHub profiles, providing valuable insig
 
 - **Challenge 1**: Gathering comprehensive data on a GitHub user's programming language usage over time posed a significant challenge. The standard approach of using the GitHub API to fetch repository languages had limitations, as it only provided insights into the languages used in the user's owned repositories, potentially missing languages used in forks or other contributions.
   - **Solution:** To overcome this challenge, I employed the highlight.js library, renowned for its language heuristics encompassing over 180 programming languages. Instead of relying solely on repository data, I utilized the GitHub API to extract a user's push events, enabling me to access commit information. For each commit, I employed highlight.js to analyze the code diff and file extensions. This approach allowed me to identify programming languages even when they were not explicitly specified in the repository data. Unidentified languages were omitted from the dataset to ensure accuracy and relevance.
-
 - **Challenge 2:** Representing the gathered data as a visually informative and meaningful chart was another hurdle. Creating a dynamic chart that showcases a user's language usage over time in an organized manner required careful consideration.
   - **Solution:** Leveraging the identified language of each commit and the associated commit dates, I implemented a stacked cumulative area chart using D3.js. This chart effectively illustrates the evolution of a user's language preferences over time. To enhance clarity and aesthetics, each programming language was paired with an appropriate color on the chart. I accomplished this by mapping language names to their corresponding positions in a JavaScript object, which encompassed all languages supported by highlight.js. This approach ensured compatibility and readability, providing viewers with an insightful and visually engaging representation of a user's programming language journey.
-
 - **Challenge 3:** Designing an eye-catching and contextually relevant graphic for the website landing page header presented a significant challenge. The graphic needed to visually convey the global nature of GitHub while maintaining a subdued color palette that adheres to WCAG AAA standards for text contrast on mobile devices, where the globe would serve as a backdrop for title text.
   - **Solution:** To address this challenge, I harnessed the power of GeoJSON data and D3.js's geographic projection tools. This approach allowed me to create a three-dimensional Earth visualization that not only symbolizes GitHub's global reach but also serves as an engaging focal point for the landing page. The choice of muted grey colors for the Earth's representation not only aligns with the website's overall tone but also ensures compliance with WCAG AAA standards for text contrast. This thoughtful combination of design and functionality results in a visually striking yet accessible header graphic that effectively captures the essence of GitHub's worldwide presence while maintaining a high level of user accessibility.
 
 ## Code Sample
 
 ```typescript
-
 // Function to count the occurrences of programming conventions
 countProgrammingConventions(filteredCommitData: Array<Commit>): string {
     // Initialize count object
@@ -74,7 +71,6 @@ countProgrammingConventions(filteredCommitData: Array<Commit>): string {
     if (highestCount == "kebabCase") return "kebab-case";
     return "camelCase"; // Default convention
 };
-
 ```
 
 ## Project Demo
