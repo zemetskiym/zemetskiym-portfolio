@@ -14,10 +14,11 @@
 #technologyList {
     width: min(1000px, 95%);
     list-style-type: none;
-    margin: 30px 0 0 0;
+    margin: 20px 0 0 0;
+    height: calc(auto - 10px);
 }
 
 .icons {
     display: inline-block;
-    margin: 0 10px 10px 0;
+    margin: 10px 10px 0 0;
 }
