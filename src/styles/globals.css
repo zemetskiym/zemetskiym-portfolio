@@ -13,3 +13,55 @@
 a {
     color: #003366;
 }
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 0.8rem;
+}
+
+h6 {
+    font-size: 0.6rem;
+}
+
+ul {
+    margin-left: 40px;
+    list-style-position: inside;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+pre {
+    font-family: monospace;
+    padding: 16px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #F6F8FA;
+    overflow-x: scroll;
+}
+
+code {
+    font-family: monospace;
+}

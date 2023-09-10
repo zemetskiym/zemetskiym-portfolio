@@ -1,6 +1,7 @@
 import projects from '../../../public/json/projects.json';
 import { GetStaticPropsContext } from 'next';
 import Breadcrumb from '../../components/Breadcrumb';
+import ProjectDescription from '../../components/ProjectDescription';
 
 // Define a function to generate static paths for dynamic routes
 export const getStaticPaths = async () => {
@@ -39,6 +40,7 @@ const ProjectId = ({project}: {project: Project}) => {
     return (
         <>
         <Breadcrumb breadcrumbs={breadcrumbsData} />
+        <ProjectDescription title={project.title} images={project.images} markdownFile={project.markdownFile} />
         </>
     );
 };

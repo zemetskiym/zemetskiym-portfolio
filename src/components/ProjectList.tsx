@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function ProjectList(): JSX.Element {
     return (
         <section id={styles.projectList}>
-            <h1 id={styles.subheading}>Projects</h1>
+            <h2 id={styles.subheading}>Projects</h2>
             <ul id={styles.imageList}>
                 {projects.map(project => 
                     <Link key={project.id} href={`/projects/${project.id}`}>
