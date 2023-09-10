@@ -18,6 +18,7 @@ export default function ProjectDescription ({title, images, markdownFile}: {titl
             <span id={styles.imageGallery}>
                 {images.map(image => 
                     <Image
+                        onClick={() => window.open(image, '_blank')}
                         className={styles.image} 
                         src={image}     
                         style={{width: "auto", height: "200px"}} 
