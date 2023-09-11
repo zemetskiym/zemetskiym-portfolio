@@ -1,11 +1,25 @@
 import styles from '../styles/components/ProjectDescription.module.css';
 import Image from 'next/image';
+import { Marked } from 'marked';
 import { marked } from 'marked';
 import { useState } from 'react';
+import { markedHighlight } from 'marked-highlight';
+import hljs from 'highlight.js';
+import { useEffect } from 'react';
 
 export default function ProjectDescription ({title, images, markdownFile}: {title: string, images: Array<string>, markdownFile: string}): JSX.Element { 
     const [markdownContent, setMarkdownContent] = useState('');
     
+    const marked = new Marked(
+        markedHighlight({
+            langPrefix: 'hljs language-',
+            highlight(code, lang) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            }
+        })
+    );
+ 
     fetch(`${markdownFile}`)
         .then((response) => response.text())
         .then((data) => {
