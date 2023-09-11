@@ -7,18 +7,13 @@
 }
 
 #imageGallery {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    width: 370px;
 }
 
 .image {
     cursor: pointer;
     margin-bottom: 10px;
-}
-
-.image:last-of-type {
-    margin: 0;
+    margin-left: 10px;
 }
 
 #description {
@@ -41,7 +36,21 @@
         margin: 1rem 0 0 0;
     }
 
+    .image {
+        margin: 0 10px 10px 0;
+    }
+
     #description {
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .image {
+        margin: 0 0 10px 0;
+    }
+
+    .image:last-of-type {
+        margin: 0 0 10px 10px;
     }
 }
