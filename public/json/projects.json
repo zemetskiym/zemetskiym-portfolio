@@ -2,6 +2,7 @@
     {
         "id": 1,
         "title": "Github Insights and Heuristic Analysis",
+        "link": "https://giha.netlify.app/",
         "images": [
             "/images/giha/giha1.png",
             "/images/giha/giha2.png",           

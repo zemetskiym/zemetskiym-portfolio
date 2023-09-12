@@ -4,8 +4,9 @@ import { Marked } from 'marked';
 import { useState } from 'react';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
+import Link from 'next/link';
 
-export default function ProjectDescription ({title, images, markdownFile}: {title: string, images: Array<string>, markdownFile: string}): JSX.Element { 
+export default function ProjectDescription ({title, images, link, markdownFile}: {title: string, images: Array<string>, link: string, markdownFile: string}): JSX.Element { 
     const [markdownContent, setMarkdownContent] = useState<string | Promise<string>>('');
     
     const marked = new Marked(
@@ -43,7 +44,9 @@ export default function ProjectDescription ({title, images, markdownFile}: {titl
                 )}
             </span>
             <span id={styles.description}>
-                <h1 id={styles.title}>{title}</h1>
+                <h1 id={styles.title}>
+                    <Link href={link} target="_blank">{title}</Link>
+                </h1>
                 {typeof markdownContent == "string" && 
                     <div dangerouslySetInnerHTML={{ __html: markdownContent }} />
                 }

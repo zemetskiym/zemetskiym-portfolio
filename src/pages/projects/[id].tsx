@@ -27,7 +27,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     };
 };
 
-type Project = {id: number; title: string; images: Array<string>; markdownFile: string}
+type Project = {id: number; title: string; link: string; images: Array<string>; markdownFile: string}
 
 // Define the ProjectId functional component
 const ProjectId = ({project}: {project: Project}) => {
@@ -40,7 +40,7 @@ const ProjectId = ({project}: {project: Project}) => {
     return (
         <>
         <Breadcrumb breadcrumbs={breadcrumbsData} />
-        <ProjectDescription title={project.title} images={project.images} markdownFile={project.markdownFile} />
+        <ProjectDescription title={project.title} link={project.link} images={project.images} markdownFile={project.markdownFile} />
         </>
     );
 };
