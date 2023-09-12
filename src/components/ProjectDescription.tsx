@@ -1,14 +1,12 @@
 import styles from '../styles/components/ProjectDescription.module.css';
 import Image from 'next/image';
 import { Marked } from 'marked';
-import { marked } from 'marked';
 import { useState } from 'react';
 import { markedHighlight } from 'marked-highlight';
 import hljs from 'highlight.js';
-import { useEffect } from 'react';
 
 export default function ProjectDescription ({title, images, markdownFile}: {title: string, images: Array<string>, markdownFile: string}): JSX.Element { 
-    const [markdownContent, setMarkdownContent] = useState('');
+    const [markdownContent, setMarkdownContent] = useState<string | Promise<string>>('');
     
     const marked = new Marked(
         markedHighlight({
@@ -23,9 +21,9 @@ export default function ProjectDescription ({title, images, markdownFile}: {titl
     fetch(`${markdownFile}`)
         .then((response) => response.text())
         .then((data) => {
-            setMarkdownContent(marked.parse(data))
+            setMarkdownContent(marked.parse(data));
         })
-        .catch((error) => {console.log(error)})
+        .catch((error) => {console.log(error);})
     
     return (
         <section id={styles.projectDescription}>
@@ -46,7 +44,9 @@ export default function ProjectDescription ({title, images, markdownFile}: {titl
             </span>
             <span id={styles.description}>
                 <h1 id={styles.title}>{title}</h1>
-                <div dangerouslySetInnerHTML={{ __html: markdownContent }} />
+                {typeof markdownContent == "string" && 
+                    <div dangerouslySetInnerHTML={{ __html: markdownContent }} />
+                }
             </span>
         </section>
     );
