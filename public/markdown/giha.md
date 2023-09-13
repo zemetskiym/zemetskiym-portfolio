@@ -72,7 +72,3 @@ countProgrammingConventions(filteredCommitData: Array<Commit>): string {
     return "camelCase"; // Default convention
 };
 ```
-
-## Project Demo
-
-Access the project demo at [https://giha.netlify.app](https://giha.netlify.app).
