@@ -19,7 +19,3 @@
 .images {
     margin: 10px 10px 0 0;
 }
-
-.images:last-of-type {
-    margin-right: 0;
-}

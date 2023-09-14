@@ -10,5 +10,17 @@
             "/images/giha/giha4.png"
         ],
         "markdownFile": "/markdown/giha.md"
+    },
+    {
+        "id": 2,
+        "title": "Github Profile Demo",
+        "link": "https://github-rest-user.netlify.app/",
+        "images": [
+            "/images/github-profile-demo/github-profile-demo1.png",
+            "/images/github-profile-demo/github-profile-demo2.png",
+            "/images/github-profile-demo/github-profile-demo3.png",
+            "/images/github-profile-demo/github-profile-demo4.png"
+        ],
+        "markdownFile": "/markdown/github-profile-demo.md"
     } 
 ]
