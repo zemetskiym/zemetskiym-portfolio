@@ -10,7 +10,7 @@ export default function ProjectList(): JSX.Element {
             <ul id={styles.imageList}>
                 {projects.map(project => 
                     <Link key={project.id} href={`/projects/${project.id}`}>
-                    <Image src={project.images[0]} sizes="242.5px" style={{width: '242.5px', height: 'auto'}} height={136.4} width={242.5} alt={project.title} className={styles.images} key={project.id} />
+                    <Image src={project.images[0]} sizes="242.5px" style={{width: 'auto', height: '136.4'}} height={136.4} width={242.5} alt={project.title} className={styles.images} key={project.id} />
                     </Link>
                 )}
             </ul>
