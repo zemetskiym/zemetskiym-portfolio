@@ -86,3 +86,8 @@ code {
 .hljs-params { color: #24292E; } /* Dark grey for parameters */
 .hljs-property { color: #0051AD; } /* Blue for properties */
 .hljs-string { color: #032F62; } /* Dark blue for strings */
+.hljs-literal { color: #006100; } /* Green for literals */
+.hljs-function { color: #754C00; } /* Orange for functions */
+.language-xml { color: #800080; } /* Purple for XML */
+.hljs-tag { color: #990099; } /* Magenta for tags */
+.hljs-name { color: #005C5C; } /* Cyan for names */
